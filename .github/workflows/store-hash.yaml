@@ -10,17 +10,17 @@ on:
 
 jobs:
   save-commit-hash:
-  runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
 
-  steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Get current commit hash
-      run: echo ${{ github.sha }} > commit_hash.txt
+      - name: Get current commit hash
+        run: echo ${{ github.sha }} > commit_hash.txt
 
-    - name: Upload commit hash artifact
-      uses: actions/upload-artifact@v2
-      with:
-          name: commit-hash
-          path: commit_hash.txt
+      - name: Upload commit hash artifact
+        uses: actions/upload-artifact@v2
+        with:
+            name: commit-hash
+            path: commit_hash.txt
