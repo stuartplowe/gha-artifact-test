@@ -22,5 +22,5 @@ jobs:
       - name: Upload commit hash artifact
         uses: actions/upload-artifact@v4
         with:
-            name: commit-hash
-            path: ${{inputs.id}}
+            name: run-info
+            path: commit_hash.txt
