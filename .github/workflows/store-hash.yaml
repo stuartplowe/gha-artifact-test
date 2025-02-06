@@ -19,8 +19,20 @@ jobs:
       - name: Get current commit hash
         run: echo "${{ inputs.id }}, ${{ github.sha }}" >> ${{ inputs.id }}.txt
 
-      - name: Upload commit hash artifact
+      - name: Download Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: site-versions
+          path: site-versions/
+        
+      - name: Get Revision info
+        run: |
+          echo "Sha: ${{ github.sha }}" > site-versions/${{ inputs.id }}.txt
+          echo "Ref: ${{ github.ref }}" >> site-versions/${{ inputs.id }}.txt
+          echo "Ref name: ${{ github.ref_name }}" >> site-versions/${{ inputs.id }}.txt
+
+      - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
-            name: run-info
-            path: ${{ inputs.id }}.txt
+            name: site-versions
+            path: site-versions/*
